@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}NutriVerde · Recetas y Dietas Saludables{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-tag">Alimentación consciente</div>
+    <h1 class="hero-title">Come bien,<br><em>vive mejor</em></h1>
+    <p class="hero-subtitle">Recetas frescas y planes de dieta diseñados para nutrirte sin renunciar al sabor.</p>
+    <div class="hero-actions">
+        <a href="/recetas" class="btn-primary">Ver recetas</a>
+        <a href="/dietas" class="btn-secondary">Explorar dietas</a>
+    </div>
+</section>
+
+<!-- RECETAS DESTACADAS -->
+<section class="section recipes-section">
+    <div class="section-header">
+        <h2 class="section-title">Recetas destacadas</h2>
+        <a href="/recetas" class="see-all">Ver todas</a>
+    </div>
+    <div class="recipes-grid">
+        <article class="recipe-card featured">
+            <div class="recipe-badge">Popular</div>
+            <div class="recipe-img-placeholder img-1"></div>
+            <div class="recipe-info">
+                <span class="recipe-time">25 min · Fácil</span>
+                <h3>Bowl de quinoa con aguacate y mango</h3>
+                <p>Una explosión tropical con proteínas vegetales y grasas saludables.</p>
+            </div>
+        </article>
+        <article class="recipe-card">
+            <div class="recipe-img-placeholder img-2"></div>
+            <div class="recipe-info">
+                <span class="recipe-time">40 min · Medio</span>
+                <h3>Curry de garbanzos con espinacas</h3>
+                <p>Especiado, cremoso y repleto de hierro y fibra.</p>
+            </div>
+        </article>
+        <article class="recipe-card">
+            <div class="recipe-img-placeholder img-3"></div>
+            <div class="recipe-info">
+                <span class="recipe-time">15 min · Fácil</span>
+                <h3>Tostadas de hummus y tomates cherry</h3>
+                <p>El desayuno perfecto para empezar el día con energía.</p>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- PLANES DE DIETA -->
+<!-- TODO: los planes detallados van en la página /dietas -->
+<section class="diets-section">
+    <div class="diets-intro">
+        <h2 class="section-title">Planes de dieta a tu medida</h2>
+        <p class="diets-text">
+            En NutriVerde sabemos que cada persona es diferente: distintos objetivos, distintos ritmos de vida y distintos presupuestos. Por eso contamos con servicios de dieta pensados para todo tipo de perfiles, desde quien quiere perder peso de forma saludable hasta deportistas que buscan optimizar su rendimiento, pasando por quienes simplemente quieren comer mejor en el día a día sin complicarse.
+        </p>
+        <p class="diets-text">
+            Nuestros planes los puedes seguir a tu ritmo, con recetas accesibles y listas de la compra claras. Sin suscripciones caras ni restricciones absurdas.
+        </p>
+        <a href="/dietas" class="btn-primary">Ver todos los planes</a>
+    </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section" id="contacto">
+    <div class="newsletter-inner">
+        <h2>Recetas frescas en tu bandeja</h2>
+        <p>Suscríbete y recibe cada semana nuevas recetas y consejos de nutrición.</p>
+        <form class="newsletter-form" onsubmit="return false;">
+            <input type="email" placeholder="tu@email.com" class="newsletter-input">
+            <button type="submit" class="btn-primary">Suscribirme</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

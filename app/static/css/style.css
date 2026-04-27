@@ -1,0 +1,620 @@
+/* =====================
+   VARIABLES & RESET
+   ===================== */
+:root {
+    --amarillo-suave: #EBCD65;
+    --verde-lima: #E1EB65;
+    --amarillo-medio: #EBDD65;
+    --naranja-dorado: #EBBD65;
+    --verde-claro: #A9EB65;
+
+    --text-dark: #2a2a1f;
+    --text-mid: #4a4a35;
+    --text-light: #7a7a60;
+    --bg-cream: #fdfdf5;
+    --bg-section: #f5f5e8;
+
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+    --max-width: 1140px;
+    --nav-height: 68px;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =====================
+   NAVBAR
+   ===================== */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--nav-height);
+    background-color: var(--amarillo-suave);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    border-bottom: 2px solid var(--naranja-dorado);
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.nav-brand {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: -0.5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.nav-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-mid);
+    padding: 0.45rem 1rem;
+    border-radius: var(--radius-sm);
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+    background-color: rgba(0,0,0,0.08);
+    color: var(--text-dark);
+}
+
+.nav-logo-slot {
+    width: 110px;
+    height: 46px;
+    border-radius: var(--radius-sm);
+    border: 2px dashed var(--naranja-dorado);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: rgba(255,255,255,0.35);
+}
+
+.logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.logo-placeholder {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-light);
+    letter-spacing: 1.5px;
+    display: none;
+}
+
+/* Mostrar placeholder si no hay imagen */
+.nav-logo-slot:not(:has(img[style*="display: none"])) .logo-placeholder {
+    display: flex;
+}
+
+/* =====================
+   HERO
+   ===================== */
+.hero {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 7rem 2.5rem 5rem;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 480px;
+    height: 380px;
+    background: radial-gradient(ellipse at center, var(--verde-lima) 0%, transparent 70%);
+    opacity: 0.35;
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+.hero-tag {
+    display: inline-block;
+    background-color: var(--verde-claro);
+    color: var(--text-mid);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    border-radius: 99px;
+    margin-bottom: 1.5rem;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    max-width: 580px;
+}
+
+.hero-title em {
+    font-style: italic;
+    color: var(--text-mid);
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-mid);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* =====================
+   BOTONES
+   ===================== */
+.btn-primary {
+    display: inline-block;
+    background-color: var(--naranja-dorado);
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.7rem 1.6rem;
+    border-radius: var(--radius-sm);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+}
+
+.btn-primary:hover {
+    background-color: #d4a84f;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.7rem 1.6rem;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--text-mid);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+.btn-outline {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.3rem;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--naranja-dorado);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-outline:hover {
+    background-color: var(--amarillo-medio);
+}
+
+/* =====================
+   SECCIONES GENERALES
+   ===================== */
+.section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 4.5rem 2.5rem;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.section-desc {
+    color: var(--text-mid);
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+}
+
+.section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.see-all {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    font-weight: 500;
+    border-bottom: 1px solid var(--text-light);
+    transition: color 0.2s;
+}
+
+.see-all:hover {
+    color: var(--text-dark);
+}
+
+/* =====================
+   CATEGORÍAS
+   ===================== */
+.categories-section {
+    background-color: var(--bg-section);
+    max-width: 100%;
+    padding: 4.5rem 0;
+}
+
+.categories-section .section-title {
+    max-width: var(--max-width);
+    margin: 0 auto 2rem;
+    padding: 0 2.5rem;
+}
+
+.categories-grid {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+}
+
+.category-card {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: 1.75rem 1.5rem;
+    border: 1.5px solid #e8e8d8;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.category-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+}
+
+.card-accent {
+    background-color: var(--amarillo-medio);
+    border-color: var(--naranja-dorado);
+}
+
+.category-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.category-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.category-card p {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    margin-bottom: 1rem;
+    font-weight: 300;
+}
+
+.card-link {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-mid);
+    transition: color 0.2s;
+}
+
+.card-link:hover {
+    color: var(--text-dark);
+}
+
+/* =====================
+   RECETAS
+   ===================== */
+.recipes-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 1.25rem;
+}
+
+@media (max-width: 900px) {
+    .recipes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.recipe-card {
+    background: white;
+    border-radius: var(--radius-md);
+    border: 1.5px solid #e8e8d8;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.recipe-card:hover {
+    transform: translateY(-2px);
+}
+
+.recipe-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: var(--naranja-dorado);
+    color: var(--text-dark);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.25rem 0.7rem;
+    border-radius: 99px;
+    z-index: 1;
+}
+
+.recipe-img-placeholder {
+    width: 100%;
+    height: 200px;
+}
+
+.featured .recipe-img-placeholder {
+    height: 260px;
+}
+
+.img-1 { background: linear-gradient(135deg, var(--verde-lima), var(--verde-claro)); }
+.img-2 { background: linear-gradient(135deg, var(--amarillo-suave), var(--naranja-dorado)); }
+.img-3 { background: linear-gradient(135deg, var(--amarillo-medio), var(--verde-lima)); }
+
+.recipe-info {
+    padding: 1.25rem;
+}
+
+.recipe-time {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-weight: 400;
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+.recipe-info h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    line-height: 1.35;
+}
+
+.recipe-info p {
+    font-size: 0.875rem;
+    color: var(--text-mid);
+    font-weight: 300;
+}
+
+/* =====================
+   DIETAS
+   ===================== */
+.diets-section {
+    background-color: var(--bg-section);
+    max-width: 100%;
+    padding: 4.5rem 0;
+}
+
+.diets-section .section-title,
+.diets-section .section-desc {
+    max-width: var(--max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 2.5rem;
+}
+
+.diets-section .section-title { margin-bottom: 0.5rem; }
+.diets-section .section-desc { margin-bottom: 2rem; }
+
+.diets-grid {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+}
+
+.diet-card {
+    background: white;
+    border-radius: var(--radius-md);
+    border: 1.5px solid #e8e8d8;
+    padding: 2rem 1.75rem;
+    position: relative;
+}
+
+.diet-highlight {
+    border-color: var(--naranja-dorado);
+    background-color: var(--amarillo-suave);
+}
+
+.diet-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background-color: var(--naranja-dorado);
+    color: var(--text-dark);
+    padding: 0.2rem 0.6rem;
+    border-radius: 99px;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.diet-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+}
+
+.diet-card p {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+}
+
+.diet-features {
+    list-style: none;
+    margin-bottom: 1.75rem;
+}
+
+.diet-features li {
+    font-size: 0.875rem;
+    color: var(--text-mid);
+    padding: 0.3rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.diet-features li::before {
+    content: '✓ ';
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* =====================
+   DIETAS (texto intro)
+   ===================== */
+.diets-section {
+    background-color: var(--bg-section);
+    padding: 4.5rem 0;
+}
+
+.diets-intro {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+}
+
+.diets-intro .section-title {
+    margin-bottom: 1.25rem;
+}
+
+.diets-text {
+    color: var(--text-mid);
+    font-weight: 300;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+}
+
+.diets-intro .btn-primary {
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+/* =====================
+   NEWSLETTER
+   ===================== */
+.newsletter-section {
+    background-color: var(--verde-lima);
+    padding: 5rem 2.5rem;
+    text-align: center;
+}
+
+.newsletter-inner {
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.newsletter-inner h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text-dark);
+}
+
+.newsletter-inner p {
+    color: var(--text-mid);
+    margin-bottom: 1.75rem;
+    font-weight: 300;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.newsletter-input {
+    flex: 1;
+    min-width: 220px;
+    padding: 0.7rem 1.1rem;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--text-mid);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    background: white;
+    color: var(--text-dark);
+    outline: none;
+}
+
+.newsletter-input:focus {
+    border-color: var(--naranja-dorado);
+}
+
+/* =====================
+   FOOTER
+   ===================== */
+.footer {
+    background-color: var(--text-dark);
+    color: rgba(255,255,255,0.55);
+    text-align: center;
+    padding: 1.75rem 2.5rem;
+    font-size: 0.85rem;
+}
