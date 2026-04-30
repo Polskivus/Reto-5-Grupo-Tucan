@@ -4,4 +4,4 @@ recetas_bp = Blueprint('recetas', __name__)
 
 @recetas_bp.route('/recetas')
 def index():
-    return render_template('index.html', recetas=recetas)
+    return render_template('index.html')
