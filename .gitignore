@@ -1,4 +1,16 @@
 app/__pycache__/config.cpython-314.pyc
+app/modelos/__pycache__/__init__.cpython-314.pyc
+app/modelos/__pycache__/dieta.cpython-314.pyc
+app/modelos/__pycache__/receta.cpython-314.pyc
+app/modelos/__pycache__/registro.cpython-314.pyc
+app/modelos/__pycache__/trabajador.cpython-314.pyc
+app/modelos/__pycache__/usuario.cpython-314.pyc
+app/__pycache__/main.cpython-314.pyc
+app/rutas/__pycache__/dietas.cpython-314.pyc
+app/rutas/__pycache__/recetas.cpython-314.pyc
+app/__pycache__/main.cpython-314.pyc
+app/rutas/__pycache__/index.cpython-314.pyc
+app/__pycache__/config.cpython-314.pyc
 app/__pycache__/main.cpython-314.pyc
 app/rutas/__pycache__/dietas.cpython-314.pyc
 app/rutas/__pycache__/index.cpython-314.pyc
