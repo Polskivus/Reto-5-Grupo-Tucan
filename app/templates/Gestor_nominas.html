@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestión de Nóminas y Contratos</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background:#f4f6f8; }
+    h1 { color:#333; }
+    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .card { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);} 
+    input, select, button { padding: 6px; margin: 3px 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background: #007BFF; color: white; }
+    button { cursor: pointer; }
+    .edit { background: orange; color: white; border: none; }
+    .save { background: green; color: white; border: none; }
+    .delete { background: red; color: white; border: none; }
+  </style>
+</head>
+<body>
+
+<h1>Gestión de Nóminas y Contratos</h1>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Agregar Empleado</h2>
+    <input type="text" id="nombre" placeholder="Nombre">
+    <input type="number" id="salario" placeholder="Salario">
+
+    <select id="contrato">
+      <option value="">Selecciona tipo de contrato</option>
+      <option value="Indefinido">Indefinido</option>
+      <option value="Temporal">Temporal</option>
+      <option value="Prácticas">Prácticas</option>
+      <option value="Freelance">Freelance</option>
+    </select>
+
+    <button onclick="agregarEmpleado()">Agregar</button>
+  </div>
+
+  <div class="card">
+    <h2>Lista de Empleados</h2>
+    <table id="tabla">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Salario</th>
+          <th>Contrato</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+</div>
+
+<script>
+  let empleados = [];
+
+  function agregarEmpleado() {
+    const nombre = document.getElementById('nombre').value.trim();
+    const salario = document.getElementById('salario').value;
+    const contrato = document.getElementById('contrato').value;
+
+    if (!nombre || !salario || !contrato) {
+      alert('Completa todos los campos');
+      return;
+    }
+
+    if (isNaN(salario) || salario <= 0) {
+      alert('El salario debe ser válido');
+      return;
+    }
+
+    empleados.push({ nombre, salario: parseFloat(salario), contrato, editando:false });
+    actualizarTabla();
+
+    document.getElementById('nombre').value = '';
+    document.getElementById('salario').value = '';
+    document.getElementById('contrato').value = '';
+  }
+
+  function activarEdicion(index) {
+    empleados[index].editando = true;
+    actualizarTabla();
+  }
+
+  function guardarEdicion(index) {
+    const nombre = document.getElementById(`nombre-${index}`).value.trim();
+    const salario = document.getElementById(`salario-${index}`).value;
+    const contrato = document.getElementById(`contrato-${index}`).value;
+
+    if (!nombre || !salario || !contrato) {
+      alert('Datos inválidos');
+      return;
+    }
+
+    if (isNaN(salario) || salario <= 0) {
+      alert('Salario inválido');
+      return;
+    }
+
+    empleados[index] = {
+      nombre,
+      salario: parseFloat(salario),
+      contrato,
+      editando: false
+    };
+
+    actualizarTabla();
+  }
+
+  function eliminarEmpleado(index) {
+    if (confirm('¿Seguro que quieres eliminar este empleado?')) {
+      empleados.splice(index, 1);
+      actualizarTabla();
+    }
+  }
+
+  function actualizarTabla() {
+    const tbody = document.querySelector('#tabla tbody');
+    tbody.innerHTML = '';
+
+    empleados.forEach((emp, index) => {
+      let fila = '<tr>';
+
+      if (emp.editando) {
+        fila += `
+          <td><input id="nombre-${index}" value="${emp.nombre}"></td>
+          <td><input id="salario-${index}" type="number" value="${emp.salario}"></td>
+          <td>
+            <select id="contrato-${index}">
+              <option ${emp.contrato==='Indefinido'?'selected':''}>Indefinido</option>
+              <option ${emp.contrato==='Temporal'?'selected':''}>Temporal</option>
+              <option ${emp.contrato==='Prácticas'?'selected':''}>Prácticas</option>
+              <option ${emp.contrato==='Freelance'?'selected':''}>Freelance</option>
+            </select>
+          </td>
+          <td>
+            <button class="save" onclick="guardarEdicion(${index})">Guardar</button>
+            <button class="delete" onclick="eliminarEmpleado(${index})">Eliminar</button>
+          </td>
+        `;
+      } else {
+        fila += `
+          <td>${emp.nombre}</td>
+          <td>${emp.salario} €</td>
+          <td>${emp.contrato}</td>
+          <td>
+            <button class="edit" onclick="activarEdicion(${index})">Editar</button>
+            <button class="delete" onclick="eliminarEmpleado(${index})">Eliminar</button>
+          </td>
+        `;
+      }
+
+      fila += '</tr>';
+      tbody.innerHTML += fila;
+    });
+  }
+</script>
+
+</body>
+</html>
