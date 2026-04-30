@@ -9,13 +9,10 @@ def create_app():
     # Registrar blueprints (rutas)
     from rutas.recetas import recetas_bp
     from rutas.dietas  import dietas_bp
+    from rutas.index import main_bp
+    app.register_blueprint(main_bp)
     app.register_blueprint(recetas_bp)
     app.register_blueprint(dietas_bp)
-
-    # Ruta principal
-    @app.route('/')
-    def index():
-        return render_template('index.html')
 
     return app
 
