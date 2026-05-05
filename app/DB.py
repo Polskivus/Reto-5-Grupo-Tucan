@@ -8,7 +8,7 @@ Después ya no lo necesitas para nada.
  
 import pymysql
  
-# ── Conexión ──────────────────────────────────────────────────────────────────
+#Crear conexion para crear las tablas, solo ejecutar una vez para crear las tablas.
 conn = pymysql.connect(
     host='127.0.0.1',
     port=3307,
@@ -19,7 +19,7 @@ conn = pymysql.connect(
  
 cursor = conn.cursor()
  
-# ── Tablas ────────────────────────────────────────────────────────────────────
+# Crear las tablas
  
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS usuario (
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS suscripcion (
 )
 """)
  
-# ── Confirmar y cerrar ────────────────────────────────────────────────────────
+# Confirmar los cambios y cerrar la conexion
 conn.commit()
 cursor.close()
 conn.close()
