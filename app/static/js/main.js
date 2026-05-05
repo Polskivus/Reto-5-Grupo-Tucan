@@ -1,6 +1,6 @@
 // Mostrar logo placeholder si no carga la imagen
 document.addEventListener('DOMContentLoaded', () => {
-    const logoImg = document.querySelector('.logo-img');
+    const logoImg = document.querySelector('Gastro_Basque Logo.png');
     const logoPlaceholder = document.querySelector('.logo-placeholder');
 
     if (logoImg && logoPlaceholder) {

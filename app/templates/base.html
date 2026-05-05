@@ -20,9 +20,16 @@
                 <a href="#contacto" class="nav-link">Contacto</a>
             </div>
         </div>
-        <div class="nav-logo-slot">
-            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="logo-placeholder">LOGO</div>
+        <div class="dropDown">
+            <button class="dropBtn">
+                <div class="nav-logo-slot">
+                    <img src="{{ url_for('static', filename='img/Gastro_Basque Logo.png') }}" alt="Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">    
+                </div>
+            </button>
+            <div class="contenidoDrop">
+                <a href="/prueba">Inicio sesion</a>
+                <a role="CerrarSesion">Cerrar sesion</a>
+            </div>
         </div>
     </nav>
 
