@@ -24,3 +24,4 @@ app/rutas/__pycache__/nominas.cpython-313.pyc
 app/rutas/__pycache__/recetas.cpython-313.pyc
 app/__pycache__/config.cpython-313.pyc
 app/__pycache__/main.cpython-313.pyc
+app/config.py
