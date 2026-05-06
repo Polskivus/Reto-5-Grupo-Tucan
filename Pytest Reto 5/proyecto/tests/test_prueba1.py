@@ -26,10 +26,8 @@ def test_error2_parametro_execute_no_es_tupla():
 
         recoge_nombre("admin")
 
-        # Capturamos cómo se llamó execute
         args, kwargs = mock_cursor.execute.call_args
 
-        # Este assert FALLA → documenta el bug (no es tupla)
         assert isinstance(args[1], tuple), \
 
 
