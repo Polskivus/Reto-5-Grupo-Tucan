@@ -1,13 +1,20 @@
 {% extends "base.html" %}
 
-{% block title %}Todas las recetas{% endblock %}
+{% block title %}Inicio de sesion{% endblock %}
+
+{% block main_class %}main-centrado-ini{% endblock %}
 
 {% block content %}
 
-<form action="/sesion" method="POST">
+<form action="/sesion" method="POST" class="sesion-ini">
+    <img src="{{ url_for('static', filename='img/Gastro_Basque Logo.png') }}" alt="Logo" class="logo-img">
+
+    <label for="usuario">Usuario</label>
     <input type="text" name="usuario">
+
+    <label for="contraseña">Contraseña</label>
     <input type="password" name="contraseña">
-    <input type="submit">
+    <input type="submit" style="width: 25%; align-self: center; border-radius: 5px;">
 </form>
 
 {% endblock %}
