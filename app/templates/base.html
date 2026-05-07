@@ -27,13 +27,18 @@
                 </div>
             </button>
             <div class="contenidoDrop">
-                <a href="/prueba">Inicio sesion</a>
-                <a role="CerrarSesion">Cerrar sesion</a>
+                {% if session.get('usuario') %}
+                    <a href="/sesion" style="pointer-events: none;">{{ session.get('usuario') }}</a>
+                    <a href="CerrarSesion">Cerrar sesion</a>
+                {% else %}
+                    <a href="/sesion">Iniciar sesion</a>
+                    <a href="/CerrarSesion">Cerrar sesion</a>
+                {% endif %}
             </div>
         </div>
     </nav>
 
-    <main>
+    <main class="{% block main_class %}{% endblock %}">
         {% block content %}{% endblock %}
     </main>
 
