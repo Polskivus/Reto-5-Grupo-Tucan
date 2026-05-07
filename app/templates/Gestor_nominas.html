@@ -27,6 +27,8 @@
   <div class="card">
     <h2>Agregar Empleado</h2>
     <input type="text" id="nombre" placeholder="Nombre">
+    <input type="text" id="email" placeholder="Email">
+    <input type="text" id="cargo" placeholder="Cargo">
     <input type="number" id="salario" placeholder="Salario">
 
     <select id="contrato">
@@ -60,12 +62,21 @@
 <script>
   let empleados = [];
 
-  function agregarEmpleado() {
-    const nombre = document.getElementById('nombre').value.trim();
-    const salario = document.getElementById('salario').value;
+  async function cargarEmpleados() {
+    const res = await fetch('/api/empleados');
+    empleados = await res.json();
+    empleados = empleados.map(e => ({ ...e, editando: false }));
+    actualizarTabla();
+  }
+
+  async function agregarEmpleado() {
+    const nombre   = document.getElementById('nombre').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const cargo    = document.getElementById('cargo').value.trim();
+    const salario  = document.getElementById('salario').value;
     const contrato = document.getElementById('contrato').value;
 
-    if (!nombre || !salario || !contrato) {
+    if (!nombre || !email || !salario || !contrato) {
       alert('Completa todos los campos');
       return;
     }
@@ -75,12 +86,19 @@
       return;
     }
 
-    empleados.push({ nombre, salario: parseFloat(salario), contrato, editando:false });
-    actualizarTabla();
+    await fetch('/api/empleados', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nombre, email, cargo, salario: parseFloat(salario), contrato })
+    });
 
-    document.getElementById('nombre').value = '';
+    document.getElementById('nombre').value  = '';
+    document.getElementById('email').value   = '';
+    document.getElementById('cargo').value   = '';
     document.getElementById('salario').value = '';
     document.getElementById('contrato').value = '';
+
+    await cargarEmpleados();
   }
 
   function activarEdicion(index) {
@@ -88,36 +106,31 @@
     actualizarTabla();
   }
 
-  function guardarEdicion(index) {
-    const nombre = document.getElementById(`nombre-${index}`).value.trim();
-    const salario = document.getElementById(`salario-${index}`).value;
+  async function guardarEdicion(index) {
+    const nombre   = document.getElementById(`nombre-${index}`).value.trim();
+    const salario  = document.getElementById(`salario-${index}`).value;
     const contrato = document.getElementById(`contrato-${index}`).value;
 
-    if (!nombre || !salario || !contrato) {
-      alert('Datos inválidos');
-      return;
-    }
+    if (!nombre || !salario || !contrato) { alert('Datos inválidos'); return; }
+    if (isNaN(salario) || salario <= 0)   { alert('Salario inválido'); return; }
 
-    if (isNaN(salario) || salario <= 0) {
-      alert('Salario inválido');
-      return;
-    }
+    await fetch(`/api/empleados/${empleados[index].contrato_id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nombre, salario: parseFloat(salario), contrato })
+    });
 
-    empleados[index] = {
-      nombre,
-      salario: parseFloat(salario),
-      contrato,
-      editando: false
-    };
-
-    actualizarTabla();
+    await cargarEmpleados();
   }
 
-  function eliminarEmpleado(index) {
-    if (confirm('¿Seguro que quieres eliminar este empleado?')) {
-      empleados.splice(index, 1);
-      actualizarTabla();
-    }
+  async function eliminarEmpleado(index) {
+    if (!confirm('¿Seguro que quieres eliminar este empleado?')) return;
+
+    await fetch(`/api/empleados/${empleados[index].contrato_id}`, {
+      method: 'DELETE'
+    });
+
+    await cargarEmpleados();
   }
 
   function actualizarTabla() {
@@ -160,6 +173,8 @@
       tbody.innerHTML += fila;
     });
   }
+
+  cargarEmpleados();
 </script>
 
 </body>
