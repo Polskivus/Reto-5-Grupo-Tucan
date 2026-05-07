@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask
 from config import Config
 #import modelos.registro  # registra todos los modelos
 
@@ -11,10 +11,8 @@ def create_app():
     from rutas.dietas  import dietas_bp
     from rutas.index import main_bp
     from rutas.nominas import nominas_bp
-    from rutas.usuarios import prueba_bp
     from rutas.inicio_sesion import inicio_bp
     app.register_blueprint(inicio_bp)
-    app.register_blueprint(prueba_bp)
     app.register_blueprint(nominas_bp)
     app.register_blueprint(main_bp)
     app.register_blueprint(recetas_bp)
