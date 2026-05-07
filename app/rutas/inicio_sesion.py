@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, session
+from flask import Blueprint, render_template, request, session, redirect
 from modelos.base_datos import recoge_nombre
 
 inicio_bp = Blueprint('sesion', __name__)
@@ -22,3 +22,9 @@ def check_sesion():
         else:
             print("Contraseña o usuario incorrecto")
             return render_template('prueba.html')
+        
+@inicio_bp.route('/CerrarSesion')
+
+def cerrar_sesion():
+    session.pop('usuario', None)
+    return redirect('/')
