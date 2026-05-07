@@ -94,7 +94,7 @@ cursor.execute("""
 CREATE TABLE IF NOT EXISTS receta_ingrediente (
     receta_id      INT   NOT NULL,
     ingrediente_id INT   NOT NULL,
-    cantidad       FLOAT NOT NULL,
+    cantidad_gramos       FLOAT NOT NULL,
     PRIMARY KEY (receta_id, ingrediente_id),
     FOREIGN KEY (receta_id)      REFERENCES receta(id),
     FOREIGN KEY (ingrediente_id) REFERENCES ingrediente(id)
@@ -130,4 +130,4 @@ conn.commit()
 cursor.close()
 conn.close()
  
-print("Tablas creadas correctamente. (RECUERDA QUE FALTAN LAS CONEXIONES ENTRE TABLAS)")
+print("Tablas creadas correctamente.")
