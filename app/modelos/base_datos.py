@@ -1,5 +1,5 @@
 import pymysql
-
+#Conectarse a la base da datos que esta en el contenedor, creando la conexion y devolviendola
 def conexion():
     conn = pymysql.connect(
     host='127.0.0.1',
@@ -9,10 +9,10 @@ def conexion():
     database='Gastro_basque',
     )
     return conn
-
+#Cerrar conexion
 def cerrar_conexion(conn):
     conn.close()
-
+#Comprueba si existe el nombre de usuario, guarda el hash de la contraseña para luego comprobar en la bd
 def recoge_nombre(usuario):
     conn = conexion()
     cursor = conn.cursor()

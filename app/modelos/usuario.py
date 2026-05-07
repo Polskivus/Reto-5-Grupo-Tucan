@@ -1,3 +1,6 @@
+#Prueba de llamar todos los usuarios para mostrarlos en pantalla.
+
+"""
 import pymysql
 from modelos.base_datos import cerrar_conexion, conexion
 
@@ -10,3 +13,4 @@ def mostrar_usuarios():
 
     cerrar_conexion(conn)
     return registro
+"""
